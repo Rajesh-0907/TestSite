@@ -1,0 +1,49 @@
+
+<div class="" *ngIf="!dataLoaded">
+    <div *ngFor="let num of temp">
+        <div class="m-2">
+            <p-skeleton  id="{{num}}" height="15rem" />
+            
+        </div>
+    </div>
+</div>
+<div *ngIf="dataLoaded">
+<form (ngSubmit)="submit()">
+<div *ngFor="let question of questions; let i = index">
+<div class="mx-2 mt-2">
+    <p-panel header="Question {{i+1}}">
+    <p class="mb-2">
+       {{questions[i].question}}
+    </p>
+
+    <div class="flex flex-col flex-wrap gap-4">
+    <div class="flex items-center">
+        <p-radiobutton name="{{questions[i].inputId[0]}}" value="{{questions[i].options[0]}}" [(ngModel)]="answers[i]" inputId="{{questions[i].inputId[0]}}" />
+        <label for="{{questions[i].inputId[0]}}" class="ml-2">{{questions[i].options[0]}}</label>
+    </div>
+    <div class="flex items-center">
+        <p-radiobutton name="{{questions[i].inputId[1]}}" value="{{questions[i].options[1]}}" [(ngModel)]="answers[i]" inputId="{{questions[i].inputId[1]}}" />
+        <label for="{{questions[i].inputId[1]}}" class="ml-2">{{questions[i].options[1]}}</label>
+    </div>
+    <div class="flex items-center">
+        <p-radiobutton name="{{questions[i].inputId[2]}}" value="{{questions[i].options[2]}}" [(ngModel)]="answers[i]" inputId="{{questions[i].inputId[2]}}" />
+        <label for="{{questions[i].inputId[2]}}" class="ml-2">{{questions[i].options[2]}}</label>
+    </div>
+
+    <div class="flex items-center">
+        <p-radiobutton name="{{questions[i].inputId[3]}}" value="{{questions[i].options[3]}}" [(ngModel)]="answers[i]" inputId="{{questions[i].inputId[3]}}" />
+        <label for="{{questions[i].inputId[3]}}" class="ml-2">{{questions[i].options[3]}}</label>
+    </div>
+
+</div>
+</p-panel>
+</div>
+</div>
+ <div class=" flex items-center justify-center mt-4 mr-2">
+   <p-button  severity="contrast" type="submit">submit</p-button>
+ </div>
+</form>
+<div class="flex items-center justify-center">
+
+</div>
+</div>
