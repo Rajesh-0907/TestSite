@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ScoreService {
-  apiUrl : string = "http://192.168.1.2:3000/score"
+  apiUrl : string = "https://testapi-aw7u.onrender.com/api/score"
   constructor(private http: HttpClient) { 
 
   }

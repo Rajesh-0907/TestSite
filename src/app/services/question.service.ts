@@ -8,7 +8,7 @@ import { questionInterface } from '../types';
 })
 export class QuestionService {
 
-  private apiUrl = 'http://192.168.1.2:3000/question';
+  private apiUrl = 'https://testapi-aw7u.onrender.com/api/question';
 
   constructor(private http: HttpClient) {}
 
