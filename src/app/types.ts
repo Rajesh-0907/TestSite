@@ -33,3 +33,7 @@ export interface loginResponseInterface{
   message : string,
   user: userInterface
 }
+
+export interface getNameInterface{
+  name: string
+}
