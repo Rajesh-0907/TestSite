@@ -13,7 +13,7 @@ export class ScoreService {
   }
 
   getScore(answers : string[], endpoint: string ): Observable<number>{
-    return this.http.post<number>(`${this.apiUrl}/${endpoint}`, {answers})
+    return this.http.post<number>(`${this.apiUrl}/${endpoint}`, {answers}, {withCredentials:true})
   }
 
 }

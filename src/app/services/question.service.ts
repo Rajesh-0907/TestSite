@@ -14,6 +14,6 @@ export class QuestionService {
   constructor(private http: HttpClient) {}
 
   getQuestions(endpoint: string): Observable<questionInterface[]> {
-    return this.http.get<questionInterface[]>(`${this.apiUrl}/${endpoint}`);
+    return this.http.get<questionInterface[]>(`${this.apiUrl}/${endpoint}`, {withCredentials:true});
   }
 }
