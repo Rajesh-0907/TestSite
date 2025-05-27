@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
     return this.http.get(`${this.apiUrl}/${this.endpoint}`, { withCredentials: true }).pipe(
       map(() => true), // If successful → allow
       catchError(() => {
-        this.router.navigate(['/login']);
+       of(this.router.createUrlTree(['/login']));
         return of(false);
       })
     );
