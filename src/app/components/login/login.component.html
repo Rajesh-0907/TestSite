@@ -1,0 +1,27 @@
+<div class="w-screen h-screen flex items-center justify-center">
+    <form (ngSubmit)="submit()">
+        <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+    <ng-template #header>
+        <img alt="Card" class="w-full" src="https://www.npti.gov.in/sites/default/files/institutes/neyveli.jpg" />
+    </ng-template>
+    <ng-template #title> Login </ng-template>
+        <div class="flex flex-col gap-4 mt-2">
+            <p-floatlabel variant="on" >
+    <input pInputText id="on_label1" [(ngModel)]="loginData.rollno" name="rollno" class="w-full " pSize="large"   autocomplete="off" />
+    <label for="on_label1">Rollno</label>
+</p-floatlabel>
+<p-floatlabel variant="on" >
+    <input pInputText id="on_label2" [(ngModel)]="loginData.password" name="password" class="w-full" type="password" pSize="large"     autocomplete="off" />
+    
+    <label for="on_label2">Password</label>
+</p-floatlabel>
+        </div>
+    <ng-template #footer>
+        <div class="flex flex-col gap-4 mt-2 items-center justify-center">
+            <p-button type="submit" label="Login" severity="contrast"  />
+            
+        </div>
+    </ng-template>
+</p-card>
+    </form>
+</div>

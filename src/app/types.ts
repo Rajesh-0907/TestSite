@@ -11,3 +11,25 @@ export interface studentsInterface{
   stream: string,
   score: number
 }
+
+export interface loginInterface{
+  rollno: string,
+  password: string
+}
+
+// "message": "Login successful",
+// 		"user": gin.H{
+// 			"name":        student.Name,
+// 			"isloggedin":  student.Isloggedin,
+// 			"issubmitted": student.Issubmitted,
+
+export interface userInterface{
+  name: string,
+  isloggedin: boolean,
+  issubmitted: boolean
+}
+
+export interface loginResponseInterface{
+  message : string,
+  user: userInterface
+}

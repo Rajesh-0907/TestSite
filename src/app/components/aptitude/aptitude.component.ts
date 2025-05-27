@@ -6,7 +6,7 @@ import { TagModule } from 'primeng/tag';
 
 @Component({
   selector: 'app-aptitude',
-  imports: [DialogModule, ButtonModule, TagModule],
+  imports: [DialogModule, ButtonModule, TagModule, TestComponent],
   standalone: true,
   templateUrl: './aptitude.component.html',
   styleUrl: './aptitude.component.css'

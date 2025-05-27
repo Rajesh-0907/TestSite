@@ -12,9 +12,11 @@
 <div *ngFor="let question of questions; let i = index">
 <div class="mx-2 mt-2">
     <p-panel header="Question {{i+1}}">
-    <p class="mb-2">
+    <div class="flex flex-wrap max-w-[700px]">
+        <p class="mb-2">
        {{questions[i].question}}
     </p>
+    </div>
 
     <div class="flex flex-col flex-wrap gap-4">
     <div class="flex items-center">

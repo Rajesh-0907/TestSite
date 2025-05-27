@@ -6,7 +6,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 
 @Component({
   selector: 'app-root',
-  imports: [ToolbarModule, RouterOutlet, ButtonModule,TestComponent, RouterModule],
+  imports: [ToolbarModule, RouterOutlet, ButtonModule, RouterModule],
   standalone:true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'

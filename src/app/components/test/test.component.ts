@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
@@ -12,7 +12,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Router } from '@angular/router';
 import { CounterService } from '../../services/counter.service';
 import { SkeletonModule } from 'primeng/skeleton';
-
 @Component({
   selector: 'app-test',
   standalone:true,
@@ -24,8 +23,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 export class TestComponent implements OnInit {
 
     private router = inject(Router);
-
-
+  @Input() questionendpoint!: string
+  @Input() answerendpoint! : string
   answers : string[]= ["", "", "", "", "", "", "", "", "", ""]
   score: number = 0
   color: string = "yellow"
@@ -38,7 +37,8 @@ export class TestComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.questionService.getQuestions().subscribe({
+
+    this.questionService.getQuestions(this.questionendpoint).subscribe({
       next: (data)=>{
         this.questions = data
         this.dataLoaded = true
@@ -55,7 +55,7 @@ export class TestComponent implements OnInit {
     // })
   }
   submit(){
-    this.scoreService.getScore(this.answers).subscribe(
+    this.scoreService.getScore(this.answers, this.answerendpoint ).subscribe(
       data=>{
         this.score=data
         if(data <= 3){

@@ -1,0 +1,32 @@
+<div class="w-screen h-screen flex items-center justify-center">
+    <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+    <ng-template #header>
+        <img alt="Card" class="w-full" src="https://www.npti.gov.in/sites/default/files/institutes/neyveli.jpg" />
+    </ng-template>
+    <ng-template #title> Signup </ng-template>
+        <div class="flex flex-col gap-4 mt-2">
+    <p-floatlabel variant="on" >
+    <input pInputText id="on_label1" class="w-full " pSize="large"   autocomplete="off" />
+    <label for="on_label1">RollNo</label>
+    </p-floatlabel>
+        <p-floatlabel variant="on" >
+    <input pInputText id="on_label2" class="w-full " pSize="large"   autocomplete="off" />
+    <label for="on_label2">Username</label>
+</p-floatlabel>
+<p-floatlabel variant="on" >
+    <input pInputText id="on_label3" class="w-full" type="password" pSize="large"     autocomplete="off" />
+    
+    <label for="on_label3">Password</label>
+</p-floatlabel>
+        </div>
+    <ng-template #footer>
+        <div class="flex flex-col gap-4 mt-2 items-center justify-center">
+            <p-button label="Signup" severity="contrast"  />
+            <a routerLink="/login">
+            <p-button link="true" label="already have an account?" severity="contrast"  />
+
+            </a>
+        </div>
+    </ng-template>
+</p-card>
+</div>
