@@ -26,7 +26,7 @@ export class LoginComponent {
 
   }
   endpoint: string = 'auth/loginuser'
-  constructor(private loginservice: LoginService, private userservice: UserService){}
+  constructor(private loginservice: LoginService){}
 
   submit(){
     this.loginservice.getUser(this.loginData, this.endpoint).subscribe({

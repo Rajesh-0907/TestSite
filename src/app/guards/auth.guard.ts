@@ -23,6 +23,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         if(data ){
         this.userservice.setUser(data.name, data.isloggedin, data.issubmitted)
         this.counterservice.setCount(data.score, "#03fce3")
+        console.log(data)
         }
             return true
         
@@ -36,8 +37,10 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.http.get(`${this.apiUrl}/${this.endpoint}`, { withCredentials: true }).pipe(
       map((data : any) => {
         if(data ){
-        this.userservice.setUser(data.name, data.isloggedin, data.issubmitted)
-        this.counterservice.setCount(data.score, "#03fce3")
+        this.userservice.setUser(data.user.name, data.user.isloggedin, data.user.issubmitted)
+        this.counterservice.setCount(data.user.score, "#03fce3")
+        console.log(data)
+
         }
             return true
         
