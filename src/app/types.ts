@@ -34,6 +34,8 @@ export interface loginResponseInterface{
   user: userInterface
 }
 
-export interface getNameInterface{
+export interface getUserInterface{
   name: string
+  issubmitted: boolean,
+  score : number
 }

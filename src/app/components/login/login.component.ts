@@ -31,8 +31,6 @@ export class LoginComponent {
   submit(){
     this.loginservice.getUser(this.loginData, this.endpoint).subscribe({
       next: (data)=>{
-        this.userservice.setName(data.user.name)
-        console.log(data)
         this.router.navigate(['/'])
       },
       error: (err)=>console.log(err)
