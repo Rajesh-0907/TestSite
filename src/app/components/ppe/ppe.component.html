@@ -6,13 +6,17 @@
 
 <div *ngIf="issubmitted()">
 <p-dialog header="Test Completed" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-    <p>
+    <p class="mb-2">
         You have completed your test
     </p>
-    <a routerLink="/" class="mt-4">
+    <!-- <h1 class="font-bold"></h1> -->
+     <ng-template #footer>
+        <a routerLink="/" >
         <p-button severity="contrast">
             Go to Home
         </p-button>
-    </a>
+        </a>    
+          </ng-template>
+    
 </p-dialog>
 </div>
