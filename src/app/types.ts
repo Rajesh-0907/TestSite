@@ -29,6 +29,10 @@ export interface userInterface{
   issubmitted: boolean
 }
 
+export interface logoutUserInterface{
+  message: string
+}
+
 export interface loginResponseInterface{
   message : string,
   user: userInterface

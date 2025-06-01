@@ -11,7 +11,7 @@
     <ng-template #center>
     </ng-template>
     <ng-template #end>
-        <div class="flex gap-3">
+        <div class="flex gap-5">
        
        <a routerLink="ppe">
         <p-button variant="outlined" severity="contrast">PPE <i style="font-size: 0.9rem;"  class="pi pi-arrow-up-right"></i></p-button>
@@ -27,9 +27,9 @@
     </span>
 </p-chip>
        </p-button>
-       <p-popover #op>
-    <div class="flex flex-col gap-4">
-        <p>logout</p>
+       <p-popover #op >
+    <div class="flex flex-col gap-4 w-[10rem]">
+        <p-button variant="text" severity="contrast" (onClick)="logout()">logout</p-button>
     </div>
 </p-popover>
     </div>

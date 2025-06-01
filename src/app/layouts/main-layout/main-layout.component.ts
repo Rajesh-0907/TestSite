@@ -1,10 +1,11 @@
-import { Component, Signal, ViewChild } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Component, inject, Signal, ViewChild } from '@angular/core';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { ToolbarModule } from 'primeng/toolbar';
 import { UserService } from '../../services/user.service';
 import { ChipModule } from 'primeng/chip';
 import { Popover, PopoverModule } from 'primeng/popover';
+import { LogoutService } from '../../services/logout.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -15,11 +16,24 @@ import { Popover, PopoverModule } from 'primeng/popover';
 })
 export class MainLayoutComponent {
    @ViewChild('op') op!: Popover;
+   private router = inject(Router)
   name! : Signal<string>
-  constructor(private userservice : UserService){
+  endpoint: string = "api/logoutuser"
+  constructor(private userservice : UserService, private logoutservice: LogoutService){
     this.name = this.userservice.name
   }
    toggle(event:any) {
         this.op.toggle(event);
+    }
+
+    logout(){
+      this.logoutservice.logoutUser(this.endpoint).subscribe({
+        next: (data)=>{
+        this.router.navigate(['/login'])
+      },
+      error: (err)=>console.log(err)
+      })
+
+      console.log("logged out")
     }
 }
