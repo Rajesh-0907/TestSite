@@ -1,3 +1,16 @@
-<app-test questionendpoint="api/ppequestion" answerendpoint="api/ppescore">
+<app-test *ngIf="!issubmitted"  questionendpoint="api/ppequestion" answerendpoint="api/ppescore">
     
 </app-test>
+
+<div *ngIf="issubmitted">
+<p-dialog header="Test Completed" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+    <p>
+        You have completed your test
+    </p>
+    <a routerLink="/">
+        <p-button severity="contrast">
+            Go to Home
+        </p-button>
+    </a>
+</p-dialog>
+</div>

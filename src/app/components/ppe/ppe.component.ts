@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { TestComponent } from '../test/test.component';
+import { UserService } from '../../services/user.service';
+import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { RouterModule } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-ppe',
-  imports: [TestComponent],
+  standalone: true,
+  imports: [TestComponent, CommonModule, DialogModule, RouterModule, ButtonModule],
   templateUrl: './ppe.component.html',
   styleUrl: './ppe.component.css'
 })
 export class PpeComponent {
-
+  issubmitted! : Signal<boolean>
+  visible: boolean = true
+  constructor(private userservice: UserService){
+    this.issubmitted = this.userservice.issubmitted
+  }
 }
