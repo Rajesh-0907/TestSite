@@ -11,12 +11,15 @@ import { loginInterface } from '../../types';
 import { LoginService } from '../../services/login.service';
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../services/user.service';
+import { Toast } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CardModule, ButtonModule,RouterModule,FormsModule,CommonModule, InputTextModule, FloatLabel, PasswordModule],
+  imports: [Toast,CardModule, ButtonModule,RouterModule,FormsModule,CommonModule, InputTextModule, FloatLabel, PasswordModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  providers: [MessageService]
 })
 export class LoginComponent {
   private router = inject(Router);
@@ -26,14 +29,24 @@ export class LoginComponent {
 
   }
   endpoint: string = 'auth/loginuser'
-  constructor(private loginservice: LoginService){}
-
+  constructor(private loginservice: LoginService, private messageService: MessageService){}
+  showToast(type: string, message: string, summary: string) {
+        this.messageService.add({ severity: type, summary: summary, detail: message });
+    }
   submit(){
     this.loginservice.getUser(this.loginData, this.endpoint).subscribe({
       next: (data)=>{
-        this.router.navigate(['/'])
+        this.showToast("success", "logged in!", "Success")
+        var nav = setInterval(()=>{
+          clearInterval(nav)
+          this.router.navigate(['/'])
+        }, 3000)
+
       },
-      error: (err)=>console.log(err)
+      error: (err:any)=>{
+        this.showToast("error", err.error.error,  "Error")
+        console.log(err)
+      }
     })
     console.log(this.loginData)
   }
