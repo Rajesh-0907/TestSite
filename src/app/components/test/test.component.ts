@@ -67,7 +67,7 @@ export class TestComponent implements OnInit {
     else{
       this.color = "#42f5b9"
     }
-        
+        this.counterService.setColor(this.color)
       }
     )
      console.log(this.answers)
