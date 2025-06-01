@@ -23,7 +23,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
         if(data ){
         this.userservice.setUser(data.name, data.isloggedin, data.issubmitted)
         this.counterservice.setCount(data.score)
-        console.log(data)
         }
             return true
         
