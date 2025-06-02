@@ -29,7 +29,7 @@ export class MainLayoutComponent {
     logout(){
       this.logoutservice.logoutUser(this.endpoint).subscribe({
         next: (data)=>{
-        this.router.navigate(['/'])
+          window.location.reload()
       },
       error: (err)=>console.log(err)
       })
