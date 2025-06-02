@@ -29,7 +29,7 @@ export class MainLayoutComponent {
     logout(){
       this.logoutservice.logoutUser(this.endpoint).subscribe({
         next: (data)=>{
-          window.location.reload()
+        this.router.navigate(['/aptitude'])
       },
       error: (err)=>console.log(err)
       })
