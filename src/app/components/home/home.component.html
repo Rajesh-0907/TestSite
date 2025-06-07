@@ -1,10 +1,9 @@
 
-<div class="w-full flex flex-col items-center justify-center" >
+<div class="w-full p-2 flex flex-col items-center justify-center" >
 <p-table
     [value]="topscore"
-    showGridlines
     stripedRows
-    [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'min-width': '30rem' }">
+    [scrollable]="true" scrollHeight="flex" [tableStyle]="{ 'min-width': '100vw'}">
         <ng-template #header>
             <tr>
                 <th>RollNo</th>
