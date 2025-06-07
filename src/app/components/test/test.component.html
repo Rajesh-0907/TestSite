@@ -42,10 +42,29 @@
 </div>
 </div>
  <div class=" flex items-center justify-center mt-4 mr-2">
-   <p-button  severity="contrast" type="submit">submit</p-button>
+   <p-button  severity="contrast" [disabled]="disabled" type="submit">submit</p-button>
  </div>
 </form>
-<div class="flex items-center justify-center">
+
+
+
+
 
 </div>
-</div>
+<p-dialog header="Your score" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+   
+        <div class="flex items-center justify-center h-screen">
+        <p-knob  valueColor="{{Countercolor()}}" [readonly]="true"  [(ngModel)]="Countercount" [min]="0" [max]="10"  valueTemplate="{{Countercount()}}/10" [size]="200" />
+
+        </div>
+  
+    <!-- <h1 class="font-bold"></h1> -->
+     <ng-template #footer>
+        <a routerLink="/" >
+        <p-button severity="contrast">
+            Go to Home
+        </p-button>
+        </a>    
+          </ng-template>
+    
+</p-dialog>

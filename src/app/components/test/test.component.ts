@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnDestroy, OnInit, Signal } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { PanelModule } from 'primeng/panel';
@@ -9,18 +9,21 @@ import { QuestionService } from '../../services/question.service';
 import { ScoreService } from '../../services/score.service';
 import { KnobModule } from 'primeng/knob';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CounterService } from '../../services/counter.service';
 import { SkeletonModule } from 'primeng/skeleton';
+import { DialogModule } from 'primeng/dialog';
+
 @Component({
   selector: 'app-test',
   standalone:true,
-  imports: [SkeletonModule,ProgressSpinnerModule, KnobModule, ButtonModule, PanelModule, RadioButtonModule,CommonModule, FormsModule],
+  imports: [RouterModule,DialogModule,SkeletonModule,ProgressSpinnerModule, KnobModule, ButtonModule, PanelModule, RadioButtonModule,CommonModule, FormsModule],
   templateUrl: './test.component.html',
   styleUrl: './test.component.css'
 })
 
-export class TestComponent implements OnInit {
+export class TestComponent implements OnInit, OnDestroy {
+    private channel = new BroadcastChannel('test_channel');
 
     private router = inject(Router);
   @Input() questionendpoint!: string
@@ -31,10 +34,19 @@ export class TestComponent implements OnInit {
   temp : number[] = [0, 1,2,3,4,5,6,7,8,9]
   dataLoaded : boolean = false
   questions : questionInterface[]=[]
+  Countercount! : Signal<number>
+  Countercolor!: Signal<string>
+  visible!:boolean
+  disabled!:boolean
   constructor(private questionService: QuestionService,
     private scoreService : ScoreService,
     private counterService : CounterService
-  ){}
+  ){
+    this.Countercount = this.counterService.count
+    this.Countercolor = this.counterService.color 
+    this.visible = false
+    this.disabled=false
+  }
 
   ngOnInit(): void {
 
@@ -53,6 +65,15 @@ export class TestComponent implements OnInit {
     // this.questionService.getQuestions().subscribe(data=>{
     //   console.log(data)
     // })
+    this.channel.postMessage({ type: 'start_test' });
+
+    // Listen for messages from other tabs
+    this.channel.onmessage = (event) => {
+      if (event.data?.type === 'start_test') {
+        alert('Test already running in another tab. Closing this one.');
+        window.location.href = '/'; // redirect to home or dashboard
+      }
+    };
   }
   submit(){
     this.scoreService.getScore(this.answers, this.answerendpoint ).subscribe(
@@ -71,9 +92,13 @@ export class TestComponent implements OnInit {
         this.counterService.setCount(this.score)
       }
     )
-     console.log(this.answers)
-     this.router.navigate(['/score'])
-
+      this.visible = true   
+      this.disabled=true 
+  }
+  ngOnDestroy(): void {
+    // Optionally notify others that this tab has closed
+    this.channel.postMessage({ type: 'end_test' });
+    this.channel.close();
   }
 
 }

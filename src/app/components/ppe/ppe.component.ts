@@ -16,6 +16,7 @@ import { ButtonModule } from 'primeng/button';
 export class PpeComponent {
   issubmitted! : Signal<boolean>
   visible!: boolean
+  score!:boolean
   constructor(private userservice: UserService){
     this.issubmitted = this.userservice.issubmitted
     this.visible = this.issubmitted()

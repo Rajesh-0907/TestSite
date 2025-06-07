@@ -4,8 +4,8 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root'
 })
 export class CounterService {
-private _count  = signal(0);
-private _color = signal("")
+private _count  = signal<number>(0);
+private _color = signal<string>("")
  count = this._count
  color = this._color
     setCount(score : number){

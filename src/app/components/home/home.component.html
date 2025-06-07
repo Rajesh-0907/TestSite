@@ -1,1 +1,23 @@
 
+<div class="w-full flex flex-col items-center justify-center" >
+<p-table
+    [value]="topscore"
+    showGridlines
+    stripedRows
+    [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template #header>
+            <tr>
+                <th>RollNo</th>
+                <th>Name</th>
+                <th>Score</th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-topscorestudents>
+            <tr>
+                <td>{{ topscorestudents.rollno }}</td>
+                <td>{{ topscorestudents.name }}</td>
+                <td>{{ topscorestudents.score }}</td>
+            </tr>
+        </ng-template>
+</p-table>
+</div>

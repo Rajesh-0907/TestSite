@@ -43,3 +43,9 @@ export interface getUserInterface{
   issubmitted: boolean,
   score : number
 }
+
+export interface TopScoreInterface{
+  rollno: string
+  name: string
+  score : number
+}
