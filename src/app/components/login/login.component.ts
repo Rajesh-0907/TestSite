@@ -47,6 +47,7 @@ export class LoginComponent {
 
       },
       error: (err:any)=>{
+        this.disabled = false
         this.showToast("error", err.error.error,  "Error")
         console.log(err)
       }
