@@ -10,7 +10,7 @@ import { TopScoreService } from '../../services/topscore.service';
 })
 export class HomeComponent implements OnInit {
   topscore! : TopScoreInterface[]
-  endpoint:string = "topscore"
+  endpoint:string = "api/topscore"
   constructor(private topscoreservice: TopScoreService){}
   ngOnInit(): void {
     this.topscoreservice.getTopScore(this.endpoint).subscribe({
