@@ -40,7 +40,7 @@ export class LoginComponent {
         var nav = setInterval(()=>{
           clearInterval(nav)
           this.router.navigate(['/'])
-        }, 3000)
+        }, 2000)
 
       },
       error: (err:any)=>{
