@@ -28,6 +28,7 @@ export class LoginComponent {
     password: ''
 
   }
+  disabled: boolean = false
   endpoint: string = 'auth/loginuser'
   constructor(private loginservice: LoginService, private messageService: MessageService){}
   showToast(type: string, message: string, summary: string) {
@@ -37,10 +38,11 @@ export class LoginComponent {
     this.loginservice.getUser(this.loginData, this.endpoint).subscribe({
       next: (data)=>{
         this.showToast("success", "logged in!", "Success")
+        this.disabled = true
         var nav = setInterval(()=>{
           clearInterval(nav)
           this.router.navigate(['/'])
-        }, 2000)
+        }, 1000)
 
       },
       error: (err:any)=>{
