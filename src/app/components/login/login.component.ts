@@ -35,10 +35,11 @@ export class LoginComponent {
         this.messageService.add({ severity: type, summary: summary, detail: message });
     }
   submit(){
+        this.disabled = true
+
     this.loginservice.getUser(this.loginData, this.endpoint).subscribe({
       next: (data)=>{
         this.showToast("success", "logged in!", "Success")
-        this.disabled = true
         var nav = setInterval(()=>{
           clearInterval(nav)
           this.router.navigate(['/'])
